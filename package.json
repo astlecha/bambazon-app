@@ -1,0 +1,24 @@
+{
+  "name": "bambazon-app",
+  "version": "1.0.0",
+  "description": "An amazon-like node application that takes in orders from customers and depletes stock from the store's inventory.",
+  "main": "bambazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astlecha/bambazon-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/astlecha/bambazon-app/issues"
+  },
+  "homepage": "https://github.com/astlecha/bambazon-app#readme",
+  "dependencies": {
+    "inquirer": "^3.2.0",
+    "mysql": "^2.13.0"
+  }
+}
