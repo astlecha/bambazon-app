@@ -16,3 +16,6 @@ SELECT * FROM products;
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ('Silk scarf', 'Apparel', 250, 25);
+
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ('Dark wash jeans', 'Apparel', 180, 100);

@@ -1,6 +1,6 @@
 var inquirer = require('inquirer');
 var mysql = require('mysql');
-var consoletable = require('console.table')
+require('console.table');
 
 var connection = mysql.createConnection({
 	host: 'localhost',
@@ -14,7 +14,8 @@ var connection = mysql.createConnection({
 
 connection.connect(function(error){
 	if(error) throw error;
-	console.log('Connected as id: '+connection.threadId);
+	// console.log('Connected as id: '+connection.threadId);
+	displayTable();
 })
 
 //Ask what item user wants to purchase with id #
@@ -26,10 +27,15 @@ connection.connect(function(error){
 var displayTable = function(){
 	connection.query('SELECT * FROM products', function(err, res){
 		if(err) throw(err);
-	});
-	console.table([
-		])
-	start();
+		// console.log(res[0].item_id);
+		var resArr = [];
+		for(var i=0;i<res.length; i++){
+			resArr.push(res[i]);
+		}
+		//Place results into the console table
+		console.table(resArr);
+	})
+	// start();
 };
 
 var start = function(){
