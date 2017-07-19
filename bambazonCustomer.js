@@ -1,5 +1,6 @@
 var inquirer = require('inquirer');
 var mysql = require('mysql');
+var consoletable = require('console.table')
 
 var connection = mysql.createConnection({
 	host: 'localhost',
@@ -22,6 +23,15 @@ connection.connect(function(error){
 	//If quantity is insufficient, alert and don't update table
 	//Otherwise change the new quantity
 
+var displayTable = function(){
+	connection.query('SELECT * FROM products', function(err, res){
+		if(err) throw(err);
+	});
+	console.table([
+		])
+	start();
+};
+
 var start = function(){
 	inquirer.prompt([
 		{	
@@ -36,6 +46,19 @@ var start = function(){
 			}
 		}
 	]).then(function(response){
-		
+		var query = connection.query('SELECT item_id FROM products', function(err, res){
+			if(err) throw err;
+			console.log(res);
+		});
+
+		if(response.itemId===query.item_id){
+			console.log(query);
+		}
+		else{
+			console.log('That id doesn\'t exit!');
+		}
 	})
 }
+
+
+// connection.query('INSERT INTO products SET ?')
