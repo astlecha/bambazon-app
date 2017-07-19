@@ -16,6 +16,12 @@ connection.connect(function(error){
 	console.log('Connected as id: '+connection.threadId);
 })
 
+//Ask what item user wants to purchase with id #
+//Ask quantity they want of item
+//Update table
+	//If quantity is insufficient, alert and don't update table
+	//Otherwise change the new quantity
+
 var start = function(){
 	inquirer.prompt([
 		{	

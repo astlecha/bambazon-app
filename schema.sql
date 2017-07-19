@@ -4,15 +4,15 @@ CREATE DATABASE bambazon;
 USE bambazon;
 
 CREATE TABLE products (
-	id INTEGER(30) AUTO_INCREMENT NOT NULL,
-	item VARCHAR(100) NOT NULL,
+	item_id INTEGER(30) AUTO_INCREMENT NOT NULL,
+	product_name VARCHAR(100) NOT NULL,
+	department_name VARCHAR(100) NULL,
 	price INT NOT NULL,
-	quantity INTEGER(10) NULL,
-	updated_quantity INT NULL,
+	stock_quantity INTEGER(10) NOT NULL,
 	PRIMARY KEY (id)
 );
 
 SELECT * FROM products;
 
-INSERT INTO products (item, price, quantity, updated_quantity)
-VALUES ('Silk scarf', 250, 25, 25);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ('Silk scarf', 'Apparel', 250, 25);
