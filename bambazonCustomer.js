@@ -18,16 +18,10 @@ connection.connect(function(error){
 	displayTable();
 })
 
-//Ask what item user wants to purchase with id #
-//Ask quantity they want of item
-//Update table
-	//If quantity is insufficient, alert and don't update table
-	//Otherwise change the new quantity
-
 var displayTable = function(){
 	connection.query('SELECT * FROM products', function(err, res){
 		if(err) throw(err);
-		// console.log(res[0].item_id);
+
 		var resArr = [];
 		for(var i=0;i<res.length; i++){
 			resArr.push(res[i]);
@@ -79,28 +73,26 @@ var purchase = function(){
 			}
 		}
 	]).then(function(answer){
-		console.log(answer.itemId);
-		connection.query("SELECT stock_quantity FROM products WHERE ?", { item_id: answer.itemId }, function(err, res) {
+
+		connection.query("SELECT stock_quantity, price FROM products WHERE ?", { item_id: answer.itemId }, function(err, res) {
 			var oldStock = res[0].stock_quantity;
-			// console.log(oldStock);
-			connection.query("UPDATE products SET ? WHERE ?", [{ stock_quantity: ( oldStock - answer.quantity) }, { item_id: answer.itemId }], function(err, res){
-				console.log(
-		          "Product: " +
-		            res.product_name +
-		            " || Department: " +
-		            res.department_name +
-		            " || Price: " +
-		            res.price +
-		            " || Quantity: " +
-		            res.stock_quantity
-		        );
-			});
+			var price = res[0].price;
+
+			console.log('Your total comes to $'+(answer.quantity * price));
+
+			updateStock(answer, oldStock);
+
 			displayTable();
-			// console.log(res);
-			connection.end();
 		});
 		
 	})
 }
+
+
+function updateStock(answer, oldStock) {
+	connection.query("UPDATE products SET ? WHERE ?", [{ stock_quantity: ( oldStock - answer.quantity) }, { item_id: answer.itemId }], function(err, res){
+		});
+}
+
 
 // connection.query('INSERT INTO products SET ?')
