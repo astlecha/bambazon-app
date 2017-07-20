@@ -19,3 +19,12 @@ VALUES ('Silk scarf', 'Apparel', 250, 25);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ('Dark wash jeans', 'Apparel', 180, 100);
+
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ('iPhone 7 Case', 'Tech Accessories', 15, 1000);
+
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ('Copper mug', 'Dishware', 20, 50);
+
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ('Swiffer Wet Jet', 'Cleaning Products', 50, 350);
