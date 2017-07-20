@@ -78,12 +78,12 @@ var purchase = function(){
 			var price = res[0].price;
 
 			if((oldStock > 0)&&(answer.quantity<=oldStock)){
-				console.log('Your total comes to $'+(answer.quantity * price));
+				console.log('\n-------------\n-------------\nYour total comes to $'+(answer.quantity * price)+'\n-------------\n-------------\n');
 				updateStock(answer, oldStock);
 				displayTable();
 			}
 			else{
-				console.log('Sorry, but there is not enough inventory to complete your request.');
+				console.log('\n-------------\nSorry, but there is not enough inventory to complete your request.\n-------------\n');
 				start();
 			}
 
