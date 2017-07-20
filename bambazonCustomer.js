@@ -73,21 +73,24 @@ var purchase = function(){
 			}
 		}
 	]).then(function(answer){
-
 		connection.query("SELECT stock_quantity, price FROM products WHERE ?", { item_id: answer.itemId }, function(err, res) {
 			var oldStock = res[0].stock_quantity;
 			var price = res[0].price;
 
-			console.log('Your total comes to $'+(answer.quantity * price));
+			if((oldStock > 0)&&(answer.quantity<=oldStock)){
+				console.log('Your total comes to $'+(answer.quantity * price));
+				updateStock(answer, oldStock);
+				displayTable();
+			}
+			else{
+				console.log('Sorry, but there is not enough inventory to complete your request.');
+				start();
+			}
 
-			updateStock(answer, oldStock);
-
-			displayTable();
 		});
 		
 	})
 }
-
 
 function updateStock(answer, oldStock) {
 	connection.query("UPDATE products SET ? WHERE ?", [{ stock_quantity: ( oldStock - answer.quantity) }, { item_id: answer.itemId }], function(err, res){
